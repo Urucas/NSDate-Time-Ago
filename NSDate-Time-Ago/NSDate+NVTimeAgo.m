@@ -37,7 +37,6 @@
     
 }
 
-
 /*
     Formatted As Time Ago
     Returns the date formatted as Time Ago (in the style of the mobile time ago date formatting for Facebook)
@@ -50,12 +49,12 @@
     
     //Should never hit this but handle the future case
     if(secondsSince < 0)
-        return @"In The Future";
+        return @"del futuro";
         
     
     // < 1 minute = "Just now"
     if(secondsSince < MINUTE)
-        return @"Just now";
+        return @"Ahora";
     
     
     // < 1 hour = "x minutes ago"
@@ -191,9 +190,9 @@
     
     //Handle Plural
     if(minutesSince == 1)
-        return @"1 minute ago";
+        return @"hace 1min";
     else
-        return [NSString stringWithFormat:@"%d minutes ago", minutesSince];
+        return [NSString stringWithFormat:@"hace %dmin", minutesSince];
 }
 
 
@@ -205,27 +204,30 @@
     
     //Handle Plural
     if(hoursSince == 1)
-        return @"1 hour ago";
+        return @"hace 1hr";
     else
-        return [NSString stringWithFormat:@"%d hours ago", hoursSince];
+        return [NSString stringWithFormat:@"hace %dhrs", hoursSince];
 }
 
 
 // Yesterday = "Yesterday at 1:28 PM"
 - (NSString *)formatAsYesterday
 {
+    return @"ayer";
+    
     //Create date formatter
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
     //Format
     [dateFormatter setDateFormat:@"h:mm a"];
-    return [NSString stringWithFormat:@"Yesterday at %@", [dateFormatter stringFromDate:self]];
+    return [NSString stringWithFormat:@"hace un dia %@", [dateFormatter stringFromDate:self]];
 }
 
 
 // < Last 7 days = "Friday at 1:48 AM"
 - (NSString *)formatAsLastWeek
 {
+    return @"hace 1sem";
     //Create date formatter
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 
@@ -238,6 +240,7 @@
 // < Last 30 days = "March 30 at 1:14 PM"
 - (NSString *)formatAsLastMonth
 {
+    return @"hace 1mes";
     //Create date formatter
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
@@ -250,6 +253,7 @@
 // < 1 year = "September 15"
 - (NSString *)formatAsLastYear
 {
+    return @"hace 1año";
     //Create date formatter
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
